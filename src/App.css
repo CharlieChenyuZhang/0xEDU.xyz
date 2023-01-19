@@ -3,8 +3,9 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34; */
+  height: 943px;
+  /* min-height: 500px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,4 +20,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(5px + 2vmin);
+  color: white;
+  background-color: black;
+  height: 800px;
 }

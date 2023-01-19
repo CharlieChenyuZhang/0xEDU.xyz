@@ -3,16 +3,32 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import FileUpload from "@mui/icons-material/FileUpload";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import ParticlesBg from "particles-bg";
 
 function App() {
-  const HeaderMsg = styled.div`
-    font-style: italic;
-    font-size: 3em;
-    font-weight: 900;
+  const CATCH_PHRASE = "Convert your images to fun memes in seconds.";
+  const DESCRIPTION =
+    "We use Generative AI to create fun memes based on your images / NFTs to help you express your emotions and showcase your creativity.";
+
+  const MsgContainer = styled.div`
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `;
-  const SecondaryHeaderMsg = styled.div`
-    margin-bottom: 60px;
+
+  const HeaderMsg = styled.h1`
+    font: "opensans-bold", sans-serif;
+    color: #fff;
+    letter-spacing: -2px;
+    margin: 0 auto 18px auto;
+    width: 80%;
+  `;
+  const SecondaryHeaderMsg = styled.h3`
+    font: 27px/1.9em "librebaskerville-regular", serif;
+    color: #ddd;
+    margin: 0 auto;
+    width: 70%;
   `;
   const ImagePreview = styled.img`
     width: 200px;
@@ -26,6 +42,7 @@ function App() {
   const Step = styled.div`
     margin-right: 20px;
     margin-bottom: 10px;
+    font-weight: bold;
   `;
   const ImageList = styled.div``;
 
@@ -51,39 +68,42 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <div className="">
       <header className="App-header">
-        <HeaderMsg>NFM</HeaderMsg>
-        <SecondaryHeaderMsg>Non-fungible Memes</SecondaryHeaderMsg>
-        <div className="main">
-          <StepsContainer>
-            <Step>Pick an image</Step>
-            <Button variant="contained" component="label">
-              Upload
-              <input
-                hidden
-                accept="image/*"
-                multiple
-                type="file"
-                onChange={handleFileUpload}
-              />
-              <FileUpload></FileUpload>
-            </Button>
-          </StepsContainer>
-          <StepsContainer>
-            <Step>Preview</Step>
-            <ImagePreview src={file} />
-          </StepsContainer>
-          <ResultContainer>
-            <Step>AI Generated Memes</Step>
-            <ImageList>
-              {itemData.map((item) => (
-                <ImagePreview src={file ? item.img : undefined} />
-              ))}
-            </ImageList>
-          </ResultContainer>
-        </div>
+        <MsgContainer>
+          <HeaderMsg>{CATCH_PHRASE}</HeaderMsg>
+          <SecondaryHeaderMsg>{DESCRIPTION}</SecondaryHeaderMsg>
+        </MsgContainer>
+        <ParticlesBg type="circle" bg={true} num={200} />
       </header>
+      <div className="main">
+        <StepsContainer>
+          <Step>Pick an image</Step>
+          <Button variant="contained" component="label">
+            Upload
+            <input
+              hidden
+              accept="image/*"
+              multiple
+              type="file"
+              onChange={handleFileUpload}
+            />
+            <FileUpload></FileUpload>
+          </Button>
+        </StepsContainer>
+        <StepsContainer>
+          <Step>Preview</Step>
+          <ImagePreview src={file} />
+        </StepsContainer>
+        <ResultContainer>
+          <Step>AI Generated Memes</Step>
+          <ImageList>
+            {itemData.map((item) => (
+              <ImagePreview src={file ? item.img : undefined} />
+            ))}
+          </ImageList>
+        </ResultContainer>
+      </div>
     </div>
   );
 }
